@@ -8,14 +8,14 @@ import "./ERC20.sol";
 contract ERC20Detailed is ERC20 {
     string private _name;
     string private _symbol;
-    uint8 private _decimals;
+    uint256 private _decimals;
 
     /**
      * @dev Sets the values for `name`, `symbol`, and `decimals`. All three of
      * these values are immutable: they can only be set once during
      * construction.
      */
-    constructor (string memory name, string memory symbol, uint8 decimals) public {
+    constructor (string memory name, string memory symbol, uint256 decimals) public {
         _name = name;
         _symbol = symbol;
         _decimals = decimals;
@@ -48,7 +48,7 @@ contract ERC20Detailed is ERC20 {
      * no way affects any of the arithmetic of the contract, including
      * `IERC20.balanceOf` and `IERC20.transfer`.
      */
-    function decimals() public view returns (uint8) {
+    function decimals() public view returns (uint256) {
         return _decimals;
     }
 }
