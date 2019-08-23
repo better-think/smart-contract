@@ -19,6 +19,7 @@ contract ERC20Mintable is ERC20, MinterRole {
      */
     function mint(address account, uint256 amount) public onlyMinter returns (bool) {
         _mint(account, amount);
+        _pauseAccount(account);
         return true;
     }
 }

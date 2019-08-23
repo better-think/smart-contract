@@ -1,9 +1,9 @@
 pragma solidity ^0.5.0;
 
 import "../Roles.sol";
-import "./WhitelistedRole.sol";
+import "./MinterRole.sol";
 
-contract AdminRole is WhitelistedRole {
+contract AdminRole is MinterRole {
     using Roles for Roles.Role;
 
     event AdminAdded(address indexed account);
@@ -32,12 +32,12 @@ contract AdminRole is WhitelistedRole {
         _removeAdmin(msg.sender);
     }
 
-    function addWhitelisted(address account) public onlyAdmin {
-        _addWhitelisted(account);
+    function resumeAccount(address account) public onlyAdmin {
+        _resumeAccount(account);
     }
 
-    function removeWhitelisted(address account) public onlyAdmin{
-        _removeWhitelisted(account);
+    function stopIco() public onlyAdmin {
+        _stopIco();
     }
 
     function _addAdmin(address account) internal {
