@@ -35,7 +35,7 @@ contract MinterRole {
     }
 
     function isPaused(address account) public view returns (bool) {
-        return _isPaused.has(account);
+        return _isPaused(account);
     }
 
     function addMinter(address account) public onlyMinter {
