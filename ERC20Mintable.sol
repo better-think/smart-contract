@@ -19,7 +19,13 @@ contract ERC20Mintable is ERC20, MinterRole {
      */
     function mint(address account, uint256 amount) public onlyMinter returns (bool) {
         _mint(account, amount);
-        _pauseAccount(account);
+
+        // First time being minted? Then let's ensure
+        // the token will remain paused for now
+        if (!_isPaused(account)) {
+            _pauseAccount(account);
+        }
+
         return true;
     }
 }

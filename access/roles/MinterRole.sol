@@ -35,7 +35,7 @@ contract MinterRole {
     }
 
     function isPaused(address account) public view returns (bool) {
-        return _pausedAccounts.has(account);
+        return _isPaused.has(account);
     }
 
     function addMinter(address account) public onlyMinter {
@@ -68,6 +68,10 @@ contract MinterRole {
     function _resumeAccount(address account) internal {
         _pausedAccounts.remove(account);
         emit AccountResumed(account);
+    }
+
+    function _isPaused(address account) internal view returns (bool) {
+        return _pausedAccounts.has(account);
     }
 
     function _stopIco() internal {
