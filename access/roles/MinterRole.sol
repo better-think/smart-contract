@@ -9,15 +9,12 @@ contract MinterRole {
     event MinterRemoved(address indexed account);
     event AccountPaused(address indexed account);
     event AccountResumed(address indexed account);
-    event IcoStopped();
 
     Roles.Role private _minters;
     Roles.Role private _pausedAccounts;
-    bool private _icoModeEnabled;
 
     constructor () internal {
         _addMinter(msg.sender);
-        _icoModeEnabled = true;
     }
 
     modifier onlyMinter() {
@@ -26,7 +23,7 @@ contract MinterRole {
     }
 
     modifier onlyResumed() {
-        require(!isPaused(msg.sender) || !_icoModeEnabled, "MinterRole: caller has his account paused");
+        require(!isPaused(msg.sender), "MinterRole: caller has his account paused");
         _;
     }
 
@@ -72,10 +69,5 @@ contract MinterRole {
 
     function _isPaused(address account) internal view returns (bool) {
         return _pausedAccounts.has(account);
-    }
-
-    function _stopIco() internal {
-        _icoModeEnabled = false;
-        emit IcoStopped();
     }
 }

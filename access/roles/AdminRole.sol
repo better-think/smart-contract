@@ -36,10 +36,6 @@ contract AdminRole is MinterRole {
         _resumeAccount(account);
     }
 
-    function stopIco() public onlyAdmin {
-        _stopIco();
-    }
-
     function _addAdmin(address account) internal {
         _admins.add(account);
         emit AdminAdded(account);
