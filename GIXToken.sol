@@ -7,7 +7,7 @@ import "./ERC20Burnable.sol";
 
 /**
  * @title GIXToken
- * @dev The GoldFinX ERC20 Token that can be
+ * @dev The GIX ERC20 Token that can be
  * minted and is capped to a maximum allocation.
  */
 contract GIXToken is ERC20Detailed, ERC20Capped, ERC20Resumable, ERC20Burnable {
@@ -15,8 +15,9 @@ contract GIXToken is ERC20Detailed, ERC20Capped, ERC20Resumable, ERC20Burnable {
     uint256 private constant CAP = 1000000000 * (10**18);
 
     constructor () public
-    ERC20Detailed("GoldFinX Coin", "GIX", DECIMALS)
-    ERC20Capped(CAP) {
+    ERC20Detailed("GIX Coin", "GIX", DECIMALS)
+    ERC20Capped(CAP)
+    {
 
     }
 }
